@@ -141,7 +141,7 @@ impl SendStream {
             .as_mut()
             .unwrap()
             .poll_unpin(cx)
-            .map(|x| x.unwrap())
+            .map(|x| x.unwrap_or(None))
         {
             Poll::Ready(None) => Poll::Ready(Ok(())),
             Poll::Ready(Some(e)) => Poll::Ready(Err(e)),
